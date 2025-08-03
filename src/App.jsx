@@ -96,6 +96,55 @@ function App() {
     setupDeck();
   }
 
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (gameOver) return;
+
+      // Select stack 1–9
+      if (e.key >= '1' && e.key <= '9') {
+        const index = parseInt(e.key) - 1;
+        if (!flippedStacks[index]) {
+          setSelectedIndex(index);
+        }
+        return;
+      }
+
+      // Move between stacks with arrow keys (horizontal only)
+      if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && !gameOver) {
+        if (selectedIndex === null) return;
+
+        let dir = e.key === 'ArrowRight' ? 1 : -1;
+        let i = selectedIndex;
+
+        for (let step = 0; step < 9; step++) {
+          i = (i + dir + 9) % 9;
+          if (!flippedStacks[i]) {
+            setSelectedIndex(i);
+            break;
+          }
+        }
+        return;
+      }
+
+      // Guess (up/down or space)
+      if (selectedIndex !== null && remainingCards.length > 0) {
+        if (e.key === 'ArrowUp') {
+          handleGuess('higher');
+        }
+        if (e.key === 'ArrowDown') {
+          handleGuess('lower');
+        }
+        if (e.key === ' ') {
+          const randomGuess = Math.random() < 0.5 ? 'higher' : 'lower';
+          handleGuess(randomGuess);
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedIndex, flippedStacks, gameOver, remainingCards]);
+
   return (
     <div className="app-container">
       <h1 className="title">Beat the Deck</h1>
