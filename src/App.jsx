@@ -9,6 +9,7 @@ function App() {
   const [flippedStacks, setFlippedStacks] = useState(new Array(9).fill(false));
   const [gameOver, setGameOver] = useState(false);
   const [gameResult, setGameResult] = useState('');
+  const [showRules, setShowRules] = useState(false);
 
   useEffect(() => {
     setupDeck();
@@ -148,6 +149,9 @@ function App() {
   return (
     <div className="app-container">
       <h1 className="title">Beat the Deck</h1>
+      <div className="rules-icon" onClick={() => setShowRules(true)} title="Show rules">
+        ?
+      </div>
 
       <div className="grid">
         {gridCards.map((card, index) => (
@@ -182,6 +186,22 @@ function App() {
           <button onClick={restartGame} style={{ marginTop: '10px' }}>
             Play Again
           </button>
+        </div>
+      )}
+      {showRules && (
+        <div className="rules-popup">
+          <div className="rules-content">
+            <span className="close-icon" onClick={() => setShowRules(false)}>×</span>
+            <h3>How to Play</h3>
+            <ul>
+              <li>A 3×3 grid of cards is dealt from a shuffled deck.</li>
+              <li>You may select any visible stack and guess if the next card is <strong>higher</strong> or <strong>lower</strong>.</li>
+              <li>If you’re wrong, the stack is flipped and becomes inactive.</li>
+              <li>You win if you use all 43 cards from the deck.</li>
+              <li>You lose only if all 9 stacks are flipped before the deck runs out.</li>
+              <li>Use keyboard: 1–9 to select stacks, arrows to guess, space to guess randomly.</li>
+            </ul>
+          </div>
         </div>
       )}
     </div>

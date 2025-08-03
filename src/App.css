@@ -127,3 +127,53 @@ h2 {
   margin-top: 20px;
   color: #444;
 }
+
+.rules-icon {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: #3b3b3b !important;
+}
+
+.rules-popup {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  max-width: 300px;
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+  z-index: 999;
+}
+
+.rules-popup h3 {
+  margin-top: 0;
+}
+
+.rules-popup ul {
+  padding-left: 20px;
+  text-align: left;
+}
+
+.rules-popup li {
+  margin-bottom: 8px;
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-icon:hover {
+  color: #e63946; /* optional: red on hover */
+}
+
+
