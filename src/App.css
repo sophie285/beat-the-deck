@@ -1,0 +1,129 @@
+/* Reset */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* App container */
+.app-container {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* Card Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 110px);
+  gap: 16px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Card Style */
+.card {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s, outline 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card.selected {
+  outline: 4px solid #007bff;
+  transform: scale(1.07);
+}
+
+/* Flip effect (grayed out and rotated slightly) */
+.card.flipped {
+  filter: grayscale(1);
+  opacity: 0.4;
+  pointer-events: none;
+  transform: rotateY(180deg) scale(0.95);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.card-wrapper {
+  width: 100px;
+  height: 140px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-wrapper.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-wrapper.flipped {
+  pointer-events: none;
+}
+
+/* Button Styling */
+button {
+  padding: 10px 16px;
+  font-size: 1rem;
+  margin: 0 4px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Game message */
+h2 {
+  font-size: 2rem;
+  margin-top: 20px;
+  color: #444;
+}
