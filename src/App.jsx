@@ -198,7 +198,8 @@ function App() {
               <li>You may select any visible stack and guess if the next card is <strong>higher</strong> or <strong>lower</strong>.</li>
               <li>If you’re wrong, the stack is flipped and becomes inactive.</li>
               <li>You win if you use all 43 cards from the deck.</li>
-              <li>You lose only if all 9 stacks are flipped before the deck runs out.</li>
+              <li>You must get the last card correct to win.</li>
+              <li>You lose if all 9 stacks are flipped before the deck runs out.</li>
               <li>Use keyboard: 1–9 to select stacks, arrows to guess, space to guess randomly.</li>
             </ul>
           </div>
