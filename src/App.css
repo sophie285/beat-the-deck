@@ -93,24 +93,25 @@ body {
 
 /* Correct / incorrect guess feedback */
 @keyframes flash-correct {
-  0% {
-    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.8);
+  0%, 60% {
+    box-shadow: 0 0 16px 6px rgba(40, 167, 69, 0.8);
   }
   100% {
-    box-shadow: 0 0 22px 8px rgba(40, 167, 69, 0);
+    box-shadow: 0 0 16px 6px rgba(40, 167, 69, 0);
   }
 }
 
 @keyframes flash-incorrect {
-  0% {
-    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.8);
+  0%, 60% {
+    box-shadow: 0 0 16px 6px rgba(220, 53, 69, 0.8);
   }
   100% {
-    box-shadow: 0 0 22px 8px rgba(220, 53, 69, 0);
+    box-shadow: 0 0 16px 6px rgba(220, 53, 69, 0);
   }
 }
 
 .card-wrapper.flash-correct .card-inner {
+  outline: 4px solid #28a745;
   animation: flash-correct 0.6s ease-out;
   border-radius: 8px;
 }

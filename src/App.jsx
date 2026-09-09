@@ -4,6 +4,13 @@ import './App.css';
 const CARD_BACK_IMAGE = 'https://deckofcardsapi.com/static/img/back.png';
 const FLASH_DURATION_MS = 600;
 
+function preloadImages(cards) {
+  cards.forEach((card) => {
+    const img = new Image();
+    img.src = card.image;
+  });
+}
+
 function App() {
   const [deckId, setDeckId] = useState(null);
   const [gridCards, setGridCards] = useState([]);
@@ -23,6 +30,7 @@ function App() {
   const prevShowRulesRef = useRef(false);
 
   useEffect(() => {
+    preloadImages([{ image: CARD_BACK_IMAGE }]);
     setupDeck();
     return () => {
       if (flashTimeoutRef.current) clearTimeout(flashTimeoutRef.current);
@@ -57,6 +65,7 @@ function App() {
       if (!drawRest.ok) throw new Error('Failed to draw cards');
       const restData = await drawRest.json();
       setRemainingCards(restData.cards);
+      preloadImages([...gridData.cards, ...restData.cards]);
 
       setFlippedStacks(new Array(9).fill(false));
       setSelectedIndex(null);
